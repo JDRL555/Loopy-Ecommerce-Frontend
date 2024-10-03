@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main>
+    <main className="text-center text-2xl p-3">
       { children }
     </main>
   )
