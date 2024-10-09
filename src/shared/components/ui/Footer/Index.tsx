@@ -2,7 +2,7 @@ import { FaInstagram } from 'react-icons/fa6'
 
 export default function Index() {
   return (
-    <footer className='bg-primary-color text-secondary-color w-full absolute bottom-0 p-3 flex flex-col items-center'>
+    <footer className='bg-primary-color text-secondary-color w-full p-3 flex flex-col items-center'>
       <p className='pb-2'>
         © Todos los derechos reservados a Loopy
       </p>

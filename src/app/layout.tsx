@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Provider from "../shared/providers/Provider";
 import { poppins } from "@/config/fonts";
-import Navbar from "@/components/ui/Navbar/Index";
-import Footer from "@/components/ui/Footer/Index";
+import Navbar from "@/shared/components/ui/Navbar/Index";
+import Footer from "@/shared/components/ui/Footer/Index";
 import "./globals.css";
 
 export const metadata: Metadata = {

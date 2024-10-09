@@ -4,7 +4,7 @@ import {nextui} from "@nextui-org/react";
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/shared/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
@@ -13,7 +13,8 @@ const config: Config = {
       colors: {
         'primary-color': "#330098",
         'secondary-color': "#FFCB23",
-        'light-secondary-color': "#FDE185"
+        'third-color': "#6E1BD5",
+        'light-secondary-color': "#FDE185",
       },
     },
   },
