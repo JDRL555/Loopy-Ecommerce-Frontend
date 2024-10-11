@@ -12,7 +12,7 @@ export const NAVBAR_ITEMS: NavbarItem[] = [
     label: "Store"
   },
   {
-    link: "/cart",
+    link: "/store/cart",
     label: FaCartShopping as IconType
   }
 ]
