@@ -1,11 +1,9 @@
-import { Product } from "@/shared/interfaces/models/Product.interface"
 import ProductCard from "../ProductCard/Index"
+import { useProductsStore } from "@/shared/store/products/products-store"
 
-interface Props {
-  products: Product[]
-}
-
-export default function ProductList({ products }: Props) {
+export default function ProductList() {
+  const products = useProductsStore(state => state.products)
+  
   return (
     <div className="grid grid-cols-4 gap-10 m-10">
       {

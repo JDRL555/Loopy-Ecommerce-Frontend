@@ -9,13 +9,11 @@ import { FaCartShopping } from 'react-icons/fa6'
 
 import { NAVBAR_ITEMS } from './constants/navbar.constants'
 
-import { useState } from 'react'
 import NavbarList from './components/NavbarList/Index'
+import { useUiStore } from '@/shared/store/ui/ui-store'
 
 export default function Navbar() {
-  const [openMenu, setOpenMenu] = useState<boolean>(false)
-
-  const quantity = 0
+  const { openMenu, setOpenMenu } = useUiStore(state => state)
 
   return (
     <Nav onMenuOpenChange={setOpenMenu} className='bg-primary-color'>
@@ -26,8 +24,8 @@ export default function Navbar() {
         aria-label={openMenu ? "Close menu" : "Open menu"}
         className="sm:hidden text-secondary-color"
       />
-      <NavbarList items={NAVBAR_ITEMS} quantity={quantity} />
-      <NavbarList items={NAVBAR_ITEMS} quantity={quantity} isMenu />
+      <NavbarList items={NAVBAR_ITEMS} />
+      <NavbarList items={NAVBAR_ITEMS} isMenu />
     </Nav>
   )
 }

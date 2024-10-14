@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import { useEffect, useState } from "react";
 import { ApiResponse } from "@/shared/interfaces/api.interface";
@@ -5,10 +6,11 @@ import { Product } from "@/shared/interfaces/models/Product.interface";
 import { ApiService } from "@/shared/services/api.service";
 import ProductList from "@/shared/components/products/ProductList/Index";
 import ProductPagination from "@/shared/components/products/ProductPagination/Index";
+import { useProductsStore } from "@/shared/store/products/products-store";
 
 export default function StorePage() {
 
-  const [products, setProducts] = useState<Product[]>([])
+  const { products, setProducts } = useProductsStore(state => state)
   const [total, setTotal] = useState<number>(0)
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function StorePage() {
   return (
     <div>
       <ProductPagination total={total} />
-      <ProductList products={products} />
+      <ProductList />
     </div>
   )
 }

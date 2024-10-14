@@ -4,12 +4,10 @@ import NavbarItem from "../NavbarItem/Index"
 
 interface Props {
   items: NavItem[],
-  quantity: number,
   isMenu?: boolean
 }
 
-export default function NavbarList({ items, quantity, isMenu = false }: Props) {
-
+export default function NavbarList({ items, isMenu = false }: Props) {
   if(isMenu) {
     return (
       <NavbarMenu className="bg-third-color">
@@ -19,7 +17,6 @@ export default function NavbarList({ items, quantity, isMenu = false }: Props) {
               <NavbarItem 
                 key={index} 
                 item={item} 
-                quantity={quantity} 
                 isMenu={isMenu} 
               />
           )
@@ -36,7 +33,6 @@ export default function NavbarList({ items, quantity, isMenu = false }: Props) {
             <NavbarItem 
               key={index} 
               item={item} 
-              quantity={quantity} 
               isMenu={isMenu} 
             />
         )

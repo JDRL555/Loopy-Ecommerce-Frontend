@@ -1,14 +1,16 @@
-import { NavbarMenuItem, NavbarItem as NavItem } from '@nextui-org/react'
 import Link from 'next/link'
+import { NavbarMenuItem, NavbarItem as NavItem } from '@nextui-org/react'
 import { NavbarItem as NavItemInterface } from '../../interfaces/navbar.interfaces'
+import { useUiStore } from '@/shared/store/ui/ui-store'
 
 interface Props {
   item: NavItemInterface,
-  quantity: number,
   isMenu?: boolean
 }
 
-export default function NavbarItem({ item, quantity, isMenu = false }: Props) {
+export default function NavbarItem({ item, isMenu = false }: Props) {
+
+  const { quantity } = useUiStore(state => state)
 
   if(isMenu) {
     return (

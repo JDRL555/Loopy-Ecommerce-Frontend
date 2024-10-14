@@ -8,13 +8,15 @@ import {
 } from '@nextui-org/react'
 import Quantity from './components/Quantity/Index'
 import { useState } from 'react'
+import { useUiStore } from '@/shared/store/ui/ui-store'
 
 interface Props {
   product: Product
 }
 
 export default function ProductCard({ product }: Props) {
-  const [quantity, setQuantity] = useState<number>(0)
+  const addQuantity = useUiStore(state => state.addQuantity)
+  const [quantityProducts, setQuantityProducts] = useState<number>(0)
 
   return (
     <Card isPressable className='transition-all hover:scale-105 p-5'>
@@ -33,8 +35,11 @@ export default function ProductCard({ product }: Props) {
         <p className='text-lg mt-3'>
           { product.price }$
         </p>
-        <Quantity quantity={quantity} setQuantity={setQuantity} />
-        <Button className='w-full bg-primary-color text-secondary-color mt-5'>
+        <Quantity quantity={quantityProducts} setQuantity={setQuantityProducts} />
+        <Button 
+          className='w-full bg-primary-color text-secondary-color mt-5'
+          onClick={() => addQuantity(quantityProducts)}
+        >
           Agregar al carrito
         </Button>
       </CardFooter>
