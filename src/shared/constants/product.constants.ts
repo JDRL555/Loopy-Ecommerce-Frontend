@@ -14,7 +14,7 @@ export const COLORS = {
 
 export const SIZES = [
   "XS", "S", "M", "L", "XL"
-]
+] as const
 
 export const CURRENCIES = [
   "USD", "COP", "BS"

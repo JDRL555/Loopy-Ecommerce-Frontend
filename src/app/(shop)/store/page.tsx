@@ -10,27 +10,35 @@ import { useProductsStore } from "@/shared/store/products/products-store";
 
 export default function StorePage() {
 
-  const { products, setProducts } = useProductsStore(state => state)
-  const [total, setTotal] = useState<number>(0)
+  const { 
+    products, 
+    setProducts,
+    reload,
+    params
+  } = useProductsStore(state => state)
+  const [total, setTotal] = useState<number>(4)
 
   useEffect(() => {
     async function main() {
+      setProducts([])
       const apiService = new ApiService<Product>("products")
-      const response: ApiResponse<Product> = await apiService.get()
+      const response: ApiResponse<Product> = await apiService.get(params)
       setProducts(response.data as Product[])
-      setTotal(response.meta?.total as number)
+      setTotal(response.meta?.lastPage as number)
     }
     main()
-  }, [])
-
-  if(products.length == 0) {
-    return <h1>Cargando productos...</h1>
-  }
+  }, [ reload, params ])
 
   return (
     <div>
       <ProductPagination total={total} />
-      <ProductList />
+      {
+        products.length === 0
+        ?
+        <h1>Cargando...</h1>
+        :
+        <ProductList />
+      }
     </div>
   )
 }
