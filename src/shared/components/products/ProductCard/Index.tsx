@@ -17,19 +17,21 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-  const addQuantity = useUiStore(state => state.addQuantity)
+  const { addQuantity, rotate } = useUiStore(state => state)
   const [quantityProducts, setQuantityProducts] = useState<number>(0)
   const [quantityByMayor, setQuantityByMayor] = useState<string>('')
   const [buyByMayor, setBuyByMayor] = useState<boolean>(false)
 
   return (
-    <Card isPressable={!buyByMayor} className='transition-all hover:scale-105 p-5'>
-      <CardBody>
+    <Card 
+      isPressable={!buyByMayor} 
+      className={`transition-all hover:scale-105 p-5 h-[35rem] ${rotate ? "w-[16rem]" : "w-[17.7rem]"}`}
+    >
+      <CardBody className='overflow-y-hidden'>
         <Image 
           src={ product.img_url }
           alt='product_img'
-          className='object-cover'
-          width="100%"
+          width="300px"
         />
       </CardBody>
       <CardFooter className='block text-left'>

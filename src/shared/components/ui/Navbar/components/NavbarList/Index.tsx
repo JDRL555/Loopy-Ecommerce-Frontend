@@ -1,4 +1,4 @@
-import { NavbarMenu } from "@nextui-org/react"
+import { NavbarMenu, NavbarContent  } from "@nextui-org/react"
 import { NavbarItem as NavItem } from "../../interfaces/navbar.interfaces"
 import NavbarItem from "../NavbarItem/Index"
 
@@ -26,7 +26,7 @@ export default function NavbarList({ items, isMenu = false }: Props) {
   }
 
   return (
-    <div className='sm:flex hidden w-1/2 justify-end items-center gap-5 box-border'>
+    <NavbarContent className='sm:flex hidden' justify="end">
       {
         items.map(
           (item, index) => 
@@ -37,6 +37,6 @@ export default function NavbarList({ items, isMenu = false }: Props) {
             />
         )
       }
-    </div>
+    </NavbarContent>
   )
 }

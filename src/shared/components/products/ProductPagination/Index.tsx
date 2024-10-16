@@ -16,7 +16,7 @@ export default function ProductPagination({ total }: Props) {
       initialPage={1}
       variant='bordered'  
       showControls 
-      className='flex justify-center w-full'
+      className='relative flex justify-center w-full'
       classNames={{
         cursor: "bg-third-color",
       }}

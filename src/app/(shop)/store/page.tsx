@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import { useEffect, useState } from "react";
+import { Button } from "@nextui-org/react"
+import { IoReload } from "react-icons/io5";
 import { ApiResponse } from "@/shared/interfaces/api.interface";
 import { Product } from "@/shared/interfaces/models/Product.interface";
 import { ApiService } from "@/shared/services/api.service";
@@ -9,10 +11,10 @@ import ProductPagination from "@/shared/components/products/ProductPagination/In
 import { useProductsStore } from "@/shared/store/products/products-store";
 
 export default function StorePage() {
-
   const { 
     products, 
     setProducts,
+    handleReload,
     reload,
     params
   } = useProductsStore(state => state)
@@ -30,8 +32,14 @@ export default function StorePage() {
   }, [ reload, params ])
 
   return (
-    <div>
+    <div className="mt-5">
       <ProductPagination total={total} />
+      <Button 
+        onClick={handleReload} 
+        className="absolute right-10 top-[5rem] bg-third-color text-secondary-color [&>*]:transition [&>*]:hover:rotate-[360deg]"
+      >
+        <IoReload />
+      </Button>
       {
         products.length === 0
         ?
