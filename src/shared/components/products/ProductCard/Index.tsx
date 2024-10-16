@@ -4,7 +4,9 @@ import {
   CardBody,
   CardFooter,
   Image,
-  Button
+  Button,
+  Checkbox,
+  Input
 } from '@nextui-org/react'
 import Quantity from './components/Quantity/Index'
 import { useState } from 'react'
@@ -17,9 +19,11 @@ interface Props {
 export default function ProductCard({ product }: Props) {
   const addQuantity = useUiStore(state => state.addQuantity)
   const [quantityProducts, setQuantityProducts] = useState<number>(0)
+  const [quantityByMayor, setQuantityByMayor] = useState<string>('')
+  const [buyByMayor, setBuyByMayor] = useState<boolean>(false)
 
   return (
-    <Card isPressable className='transition-all hover:scale-105 p-5'>
+    <Card isPressable={!buyByMayor} className='transition-all hover:scale-105 p-5'>
       <CardBody>
         <Image 
           src={ product.img_url }
@@ -35,13 +39,36 @@ export default function ProductCard({ product }: Props) {
         <p className='text-lg mt-3'>
           { product.price }$
         </p>
-        <Quantity quantity={quantityProducts} setQuantity={setQuantityProducts} />
+        {
+          buyByMayor
+          ?
+          <Input 
+            type='number'
+            min={12}
+            value={quantityByMayor}
+            onValueChange={setQuantityByMayor}
+            placeholder='Agrega la cantidad que deseas vender al mayor'
+          />
+          :
+          <Quantity quantity={quantityProducts} setQuantity={setQuantityProducts} />
+        }
         <Button 
           className='w-full bg-primary-color text-secondary-color mt-5'
-          onClick={() => addQuantity(quantityProducts)}
+          onClick={() => addQuantity(parseInt(quantityByMayor) | quantityProducts)}
         >
           Agregar al carrito
         </Button>
+        {
+          quantityProducts >= 12   
+          &&
+          <Checkbox
+            isSelected={buyByMayor}
+            onValueChange={setBuyByMayor}
+          >
+            ¿Quieres comprar al mayor?
+          </Checkbox>
+
+        }
       </CardFooter>
     </Card>
   )
