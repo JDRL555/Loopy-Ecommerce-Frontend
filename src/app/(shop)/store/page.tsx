@@ -9,6 +9,7 @@ import { ApiService } from "@/shared/services/api.service";
 import ProductList from "@/shared/components/products/ProductList/Index";
 import ProductPagination from "@/shared/components/products/ProductPagination/Index";
 import { useProductsStore } from "@/shared/store/products/products-store";
+import ProductSkeleton from "@/shared/components/products/ProductCard/components/Skeleton/Index";
 
 export default function StorePage() {
   const { 
@@ -43,7 +44,17 @@ export default function StorePage() {
       {
         products.length === 0
         ?
-        <h1>Cargando...</h1>
+        <div className="flex flex-wrap m-10 gap-10 mt-4 justify-center">
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+        </div>
         :
         <ProductList />
       }
