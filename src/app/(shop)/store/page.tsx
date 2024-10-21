@@ -10,11 +10,13 @@ import ProductList from "@/shared/components/products/ProductList/Index";
 import ProductPagination from "@/shared/components/products/ProductPagination/Index";
 import { useProductsStore } from "@/shared/store/products/products-store";
 import ProductSkeleton from "@/shared/components/products/ProductCard/components/Skeleton/Index";
+import { Category } from "@/shared/interfaces/models/Category.interface";
 
 export default function StorePage() {
   const { 
     products, 
     setProducts,
+    setCategories,
     handleReload,
     reload,
     params
@@ -24,10 +26,16 @@ export default function StorePage() {
   useEffect(() => {
     async function main() {
       setProducts([])
-      const apiService = new ApiService<Product>("products")
-      const response: ApiResponse<Product> = await apiService.get(params)
-      setProducts(response.data as Product[])
-      setTotal(response.meta?.lastPage as number)
+      const productService = new ApiService<Product>("products")
+      const categoryService = new ApiService<Category>("categories")
+      
+      const productResponse: ApiResponse<Product> = await productService.get(params)
+      const categoryResponse: ApiResponse<Category> = await categoryService.get()
+      
+      setProducts(productResponse.data as Product[])
+      setCategories(categoryResponse.data as Category[])
+
+      setTotal(productResponse.meta?.lastPage as number)
     }
     main()
   }, [ reload, params ])
