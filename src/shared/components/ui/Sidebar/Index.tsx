@@ -67,9 +67,10 @@ export default function Sidebar() {
         formatOptions={{style: "currency", currency: "USD"}}
         className="max-w-md bg-gray-100 p-3 rounded-lg text-gray-500"
         classNames={{
+          labelWrapper: "flex-col",
           filler: "bg-third-color",
           mark: "text-secondary-color"
-        }}
+        }}  
         renderThumb={(props) => (
           <div
             {...props}

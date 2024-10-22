@@ -10,6 +10,8 @@ export interface Product extends BaseModel {
   name: string,
   available_units: number,
   price: number,
+  price_offer: number,
+  is_offer: boolean,
   colors: Colors[],
   sizes: Sizes[],
   categoryId: string,

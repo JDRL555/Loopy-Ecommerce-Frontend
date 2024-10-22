@@ -38,9 +38,22 @@ export default function ProductCard({ product }: Props) {
         <h2 className='text-ellipsis w-full overflow-hidden whitespace-nowrap'>
           { product.name }
         </h2>
-        <p className='text-lg mt-3'>
-          { product.price }$
-        </p>
+        {
+          product.is_offer
+          ?
+          <div className='flex'>
+            <p className='text-lg mt-3'>
+              { product.price_offer }$
+            </p>
+            <p className='text-xs mt-3 text-red-400 line-through'>
+              { product.price }$
+            </p>
+          </div>
+          :
+          <p className='text-lg mt-3'>
+            { product.price }$
+          </p>
+        }
         {
           buyByMayor
           ?
